@@ -11,7 +11,7 @@ class User extends Model
 
     public $id;
     public $username;
-    public $password;
+    private $password;
     public $email;
 
     function findByUsername(string $username)
@@ -81,5 +81,18 @@ class User extends Model
             'email' => $user->email,
             'password' => $user->password
         ]);
+    }
+
+
+    function set(User $user, string $password){
+        $user->password = $password;
+    }
+    
+    function findByUser(int $user_id){
+        $maRequeteUserFind =  $this->pdo->prepare("SELECT * FROM `users` WHERE `id`=:id");
+        $maRequeteUserFind->execute(["id"=> $user_id]);
+
+        $user = $maRequeteUserFind->fetchObject();
+        return $user;
     }
 }

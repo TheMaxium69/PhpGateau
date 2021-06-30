@@ -13,6 +13,7 @@ class Recipe extends Model
     public $name;
     public $desc;
     public $gateau_id;
+    public $user_id;
 
     /**
      * trouve toutes les annonces liées à un garage

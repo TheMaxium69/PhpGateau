@@ -26,6 +26,9 @@
 echo "<br>";
 echo $recipe->desc;
 echo "<br>";
+$modelUser = new \Model\User();
+$user = $modelUser->findByUser($recipe->user_id);
+echo $user->username;
 ?>
     <p><strong>  il y a <?php $modelMakes = new \Model\Make();
             $makesRecipeNb = $modelMakes->count($recipe->id, "recipe_id");
