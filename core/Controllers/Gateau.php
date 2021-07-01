@@ -108,8 +108,9 @@ class Gateau extends Controller
             die("formulaire mal rempli");
         }
 
-
-        $this->model->insert($name,$gout);
+        $modelUser = new \Model\User();
+        $user = $modelUser->getUser();
+        $this->model->insert($name, $gout, $user->id);
 
 
         \Http::redirect('index.php?controller=gateau&task=index');
@@ -126,7 +127,10 @@ class Gateau extends Controller
         }
 
         if ($gateauAdd == true) {
-            $this->model->insert($name, $gout);
+            
+            $modelUser = new \Model\User();
+            $user = $modelUser->getUser();
+            $this->model->insert($name, $gout, $user->id);
 
             \Http::redirect("index.php");
         }else{

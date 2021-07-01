@@ -10,6 +10,7 @@ class Gateau extends Model
     public $id;
     public $name;
     public $gout;
+    public $user_id;
 
 
     /**
@@ -19,15 +20,16 @@ class Gateau extends Model
      * ajout d'un gateau
      * methode qui ajoute un gateau en utilisant le post du formulaire du geteau qui a été rucpere dans le controleur
      */
-    function insert(string $name, string $gout) : void
+    function insert(string $name, string $gout, int $user_id) : void
     {
 
-        $maRequeteCreateGateau = $this->pdo->prepare("INSERT INTO gateaux (name, gout) 
-          VALUES (:name, :gout)");
+        $maRequeteCreateGateau = $this->pdo->prepare("
+        INSERT INTO `gateaux` (`name`, `gout`, `user_id`) VALUES (:name, :gout, :user_id)");
 
         $maRequeteCreateGateau->execute([
             'name' => $name,
             'gout' => $gout,
+            'user_id' => $user_id
         ]);
     }
     /**

@@ -42,16 +42,17 @@ class Recipe extends Model
      *
     */
 
-    function insert(string $name, string $desc, int $gateau_id)
+    function insert(string $name, string $desc, int $gateau_id, int $user_id)
     {
 
-        $maRequeteInsertRecipe = $this->pdo->prepare("INSERT INTO `recipe`(`name`, `desc`, `gateau_id`) VALUES (:name, :desc, :gateau_id)");
+        $maRequeteInsertRecipe = $this->pdo->prepare("INSERT INTO `recipe`(`name`, `desc`, `gateau_id`, `user_id`) VALUES (:name, :desc, :gateau_id, :user_id)");
 
 
         $maRequeteInsertRecipe->execute([
             'name' => $name,
             'desc' => $desc,
-            'gateau_id' => $gateau_id
+            'gateau_id' => $gateau_id,
+            'user_id' => $user_id
         ]);
 
     }

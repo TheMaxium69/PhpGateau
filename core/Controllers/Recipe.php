@@ -56,8 +56,10 @@ class Recipe extends Controller
                 }
 
                 if ($recipeAdd == true) {
-
-                    $this->model->insert($name, $desc, $gateau_id);
+                    
+                    $modelUser = new \Model\User();
+                    $user = $modelUser->getUser();
+                    $this->model->insert($name, $desc, $gateau_id, $user->id);
 
                     \Http::redirect("index.php");
                 }else {
