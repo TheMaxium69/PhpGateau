@@ -25,10 +25,11 @@ echo "Creer par " . $user->username;
         <a href="index.php?controller=make&task=add&idgateau=<?php echo $gateau->id;?>&indexpage=1" class="btn btn-warning">J'ai fait ce gâteau</a>
         <a href="index.php?controller=gateau&task=show&id=<?php echo $gateau->id; ?>" class="btn btn-primary">Voir ce gateau</a>
         <?php $LoggedIn = $modelUser->isLoggedIn();
-              $userLog = $modelUser->getUser();
-if($LoggedIn && $gateau->id == $userLog->id){ ?>   
+if($LoggedIn){
+    $userLog = $modelUser->getUser();
+    if($gateau->id == $userLog->id){ ?>   
         <a href="index.php?controller=gateau&task=suppr&id=<?php echo $gateau->id; ?>" class="btn btn-danger">Supprimer ce gateau</a>
-        <?php } ?>
+        <?php } } ?>
     </div>
     <hr>
     

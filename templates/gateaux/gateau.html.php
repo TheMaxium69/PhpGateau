@@ -1,4 +1,4 @@
-<?php $modelUser = new \Model\User(); ?>
+<?php $modelUser = new \Model\User();?>
 <h2><?php echo $gateau->name; ?></h2>
 
 <h3><?php echo $gateau->gout; ?></h3>
@@ -14,10 +14,11 @@ echo "Creer par " . $user->username;
 
 <a href="index.php?controller=make&task=add&idgateau=<?php echo $gateau->id;?>" class="btn btn-warning">J'ai fait ce gâteau</a>
 <?php $LoggedIn = $modelUser->isLoggedIn();
-              $userLog = $modelUser->getUser();
-if($LoggedIn && $gateau->id == $userLog->id){ ?>   
+if($LoggedIn){
+    $userLog = $modelUser->getUser();
+    if($gateau->id == $userLog->id){ ?>   
 <a href="index.php?controller=gateau&task=add&id=<?php echo $gateau->id; ?>" class="btn btn-primary">Edit le gateaux</a>
-<?php } ?>
+<?php }} ?>
 <?php $LoggedIn = $modelUser->isLoggedIn();
             if($LoggedIn){ ?>            
 <a href="index.php?controller=recipe&task=add&id=<?php echo $gateau->id; ?>" class="btn btn-success">ajoutez une recette</a>
