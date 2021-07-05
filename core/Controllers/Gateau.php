@@ -44,16 +44,6 @@ class Gateau extends Controller
         //on recupère tous les garages
         $gateaux = $this->model->findAll($this->modelName);
 
-
-
-        //on fixe le titre de la page
-        $titreDeLaPage = "Gateaux";
-
-        //on affiche
-        // \Rendering::render("gateaux/gateaux",
-        //     compact('gateaux', 'titreDeLaPage')
-        // );
-
         header('Access-Control-Allow-Origin: *');
 
         //Json
@@ -88,6 +78,35 @@ class Gateau extends Controller
 
     }
 
+    public function showApi(){
+
+
+
+        $gateau_id = null;
+
+        if(!empty($_GET['id']) && ctype_digit($_GET['id'])){
+
+            $gateau_id = $_GET['id'];
+        }
+
+        if(!$gateau_id){
+            die("il faut absolument entrer un id dans l'url pour que le script fonctionne");
+        }
+
+
+
+        $gateau = $this->model->find($gateau_id);
+
+        $modelRecipe = new \Model\Recipe();
+        $classRecipe = \Model\Recipe::class;
+        $recipes = $modelRecipe->findAllByGateau($gateau_id, $classRecipe);
+        
+        header('Access-Control-Allow-Origin: *');
+
+        //Json
+        echo json_encode(['gateau' => $gateau, 
+                          'recipes' => $recipes]);
+    }
     public function show(){
 
 
