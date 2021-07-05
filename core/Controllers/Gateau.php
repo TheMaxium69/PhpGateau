@@ -84,9 +84,9 @@ class Gateau extends Controller
 
         $gateau_id = null;
 
-        if(!empty($_GET['id']) && ctype_digit($_GET['id'])){
+        if(!empty($_POST['id']) && ctype_digit($_POST['id'])){
 
-            $gateau_id = $_GET['id'];
+            $gateau_id = $_POST['id'];
         }
 
         if(!$gateau_id){
@@ -101,7 +101,7 @@ class Gateau extends Controller
         $classRecipe = \Model\Recipe::class;
         $recipes = $modelRecipe->findAllByGateau($gateau_id, $classRecipe);
         
-        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Origin: *");
 
         //Json
         echo json_encode(['gateau' => $gateau, 
