@@ -37,6 +37,30 @@ class Gateau extends Controller
 
     }
 
+    public function indexApi()
+    {
+
+
+        //on recupère tous les garages
+        $gateaux = $this->model->findAll($this->modelName);
+
+
+
+        //on fixe le titre de la page
+        $titreDeLaPage = "Gateaux";
+
+        //on affiche
+        // \Rendering::render("gateaux/gateaux",
+        //     compact('gateaux', 'titreDeLaPage')
+        // );
+
+        header('Access-Control-Allow-Origin: *');
+
+        //Json
+        echo json_encode($gateaux);
+
+    }
+
     public function suppr(){
 
 
