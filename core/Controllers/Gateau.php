@@ -78,40 +78,15 @@ class Gateau extends Controller
 
     }
 
-    public function supprApi(){
-
-
-        if(!empty($_POST['id']) && ctype_digit($_POST['id'])){
-            $gateau_id = $_POST['id'];
-        }
-        if(!$gateau_id){
-
-            die("il faut entrer un id valide en paramtre dans l'url");
-        }
-
-        // on veut verifier que cet garage existe bien dans la base de données
-        $gateau = $this->model->find($gateau_id);
-
-
-        //si le garage n'existe pas
-        if(!$gateau){
-            die("ce gateau est inexistant");
-        }
-        // alors , faire la requete de suppression
-
-        $this->model->delete($gateau_id);
-
-    }
-
     public function showApi(){
 
 
 
         $gateau_id = null;
 
-        if(!empty($_POST['id']) && ctype_digit($_POST['id'])){
+        if(!empty($_GET['id']) && ctype_digit($_GET['id'])){
 
-            $gateau_id = $_POST['id'];
+            $gateau_id = $_GET['id'];
         }
 
         if(!$gateau_id){

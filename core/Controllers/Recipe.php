@@ -40,6 +40,25 @@ class Recipe extends Controller
         \Http::redirect('index.php?controller=gateau&task=index');
     }
 
+    public function suppApi(){
+
+
+        if(!empty($_GET['id']) && ctype_digit($_GET['id'])){
+            $recipe_id = $_GET['id'];
+        }
+        if(!$recipe_id){
+            die("il faut entrer un id valide en paramtre dans l'url");
+        }
+
+
+        $recipe = $this->model->find($recipe_id);
+
+        if(!$recipe){
+            die("cette recette est inexistante");
+        }
+
+        $this->model->delete($recipe_id);
+    }
 
     public function add(){
 
