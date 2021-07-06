@@ -43,8 +43,8 @@ class Recipe extends Controller
     public function suppApi(){
 
 
-        if(!empty($_GET['id']) && ctype_digit($_GET['id'])){
-            $recipe_id = $_GET['id'];
+        if(!empty($_POST['id']) && ctype_digit($_POST['id'])){
+            $recipe_id = $_POST['id'];
         }
         if(!$recipe_id){
             die("il faut entrer un id valide en paramtre dans l'url");
