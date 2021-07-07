@@ -55,6 +55,10 @@ class User extends Controller
         \Http::redirect('index.php?controller=gateau&task=index');
     }
 
+    public function loggoutApi(){
+        $this->model->loggout();
+    }
+
 
     public function index(){
             $LoggedIn = $this->model->isLoggedIn();
