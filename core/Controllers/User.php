@@ -26,6 +26,29 @@ class User extends Controller
             \Rendering::render('users/login', compact('reponse', 'titreDeLaPage'));
     }
 
+    public function loginApi(){
+        $reponse = null;
+
+        if(!empty($_POST['username']) && !empty($_POST['password'])){
+            $usernameLogin = $_POST['username'];
+            $passwordLogin = $_POST['password'];
+            $resultLogin = $this->model->login($usernameLogin, $passwordLogin);
+            if($resultLogin){
+                $modelUser = new \Model\User();
+                $user = $modelUser->getUser();
+
+                header("Access-Control-Allow-Origin: *");
+                echo json_encode($user);
+            }else{
+                $reponse = "Erreur de connexion";
+                echo json_encode($reponse);
+            }
+        }else{
+            $reponse = "inutile de ce connecter sans username et mdp";
+            echo json_encode($reponse);
+        }
+    }
+
     public function loggout(){
         $this->model->loggout();
     
